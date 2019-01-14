@@ -13,65 +13,50 @@
 
 {% block body %}
 {% block header %}
-<div class="navbar-fixed-top-spacing">&nbsp;</div>
-<div class="navbar navbar-default navbar-fixed-top machina-navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">{% block brand %}{{ MACHINA_FORUM_NAME|default:"My forum" }}{% endblock %}</a>
-    </div>
-    <div class="collapse navbar-collapse">
-      {% block header_collapse %}
-      <div class="col-sm-7 col-md-8 col-lg-5">
-        <form class="navbar-form form-inline" role="search" action="{% url 'forum_search:search' %}">
-          <div class="form-group col-sm-6 col-md-7">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="{% trans 'Search...' %}" name="q">
-              <div class="input-group-btn">
-                <button class="btn btn-secondary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <a href="{% url 'forum_search:search' %}" class="btn btn-link">{% trans "Advanced search" %}</a>
-          </div>
-        </form>
-      </div>
-      {% endblock header_collapse %}
-    </div>
+<nav class="navbar navbar-expand-sm navbar-light bg-light" role="navigation">
+  <a class="navbar-brand" href="/">{% block brand %}{{ MACHINA_FORUM_NAME|default:"My forum" }}{% endblock %}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% block header_collapse %}
+    <form class="form-inline ml-auto" role="search" action="{% url 'forum_search:search' %}">
+      <input type="text" class="form-control mr-sm-2" placeholder="{% trans 'Search...' %}" name="q">
+      <button class="btn btn-secondary btn-sm" type="submit">Search!</button>
+      <a href="{% url 'forum_search:search' %}" class="btn btn-link">{% trans "Advanced search" %}</a>
+    </form>
+    {% endblock header_collapse %}
   </div>
-</div>
+</nav>
 {% endblock header %}
-<div class="container" id="main_container">
-  <div class="row">
-    <div class="col-12">
-      {% block breadcrumb %}{% include "partials/breadcrumb.html" %}{% endblock breadcrumb %}
-      <div class="float-right controls-link-wrapper">
+
+<div class="row">
+  <div class="col-12">
+    {% block breadcrumb %}{% include "partials/breadcrumb.html" %}{% endblock breadcrumb %}
+    
+    <div class="float-right controls-link-wrapper">
       {% if not request.user.is_anonymous %}
-        <a href="{% url 'forum_member:user_subscriptions' %}" class="btn btn-link"><i class="fa fa-bookmark-o ">&nbsp;</i>{% trans "Subscriptions" %}</a>
-        <a href="{% url 'forum_member:user_posts' request.user.id %}" class="btn btn-link"><i class="fa fa-comments-o ">&nbsp;</i>{% trans "View my posts" %}</a>
+      <a href="{% url 'forum_member:user_subscriptions' %}" class="btn btn-link"><i class="fa fa-bookmark-o ">&nbsp;</i>{% trans "Subscriptions" %}</a>
+      <a href="{% url 'forum_member:user_posts' request.user.id %}" class="btn btn-link"><i class="fa fa-comments-o ">&nbsp;</i>{% trans "View my posts" %}</a>
       {% endif %}
       {% get_permission 'can_access_moderation_queue' request.user as can_access_moderation_queue %}
       {% if can_access_moderation_queue %}
-        <a href="{% url 'forum_moderation:queue' %}" class="btn btn-link"><i class="fa fa-gavel">&nbsp;</i>{% trans "Moderation queue" %}</a>
+      <a href="{% url 'forum_moderation:queue' %}" class="btn btn-link"><i class="fa fa-gavel">&nbsp;</i>{% trans "Moderation queue" %}</a>
       {% endif %}
-      </div>
     </div>
+    
   </div>
-  <div class="row">
-    <div class="col-12">
-      <br />
-      {% block messages %}{% include "partials/messages.html" %}{% endblock messages %}
-    </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <br />
+    {% block messages %}{% include "partials/messages.html" %}{% endblock messages %}
   </div>
+</div>
   {% block content %}
   {% endblock content %}
-</div>
 {% endblock body %}
 
 {% block js %}
