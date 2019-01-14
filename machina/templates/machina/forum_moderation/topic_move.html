@@ -6,12 +6,12 @@
 
 {% block content %}
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="panel panel-default topic-move">
-	            <div class="panel-heading">
-	                <h3 class="panel-title">{% trans "Move topic" %}</h3>
+		<div class="col-12">
+			<div class="card topic-move">
+	            <div class="card-header">
+	                <h3 class="card-title">{% trans "Move topic" %}</h3>
 	            </div>
-	            <div class="panel-body">
+	            <div class="card-body">
 				    <form action="" method="post">{% csrf_token %}
 				    	{% include "partials/form_field.html" with field=form.forum %}
                         <div class="checkbox">

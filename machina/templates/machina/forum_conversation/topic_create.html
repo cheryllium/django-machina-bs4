@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
             <h1>{{ forum.name }}</h1>
         </div>
     </div>
@@ -17,12 +17,12 @@
         {% include "forum_conversation/post_preview.html" %}
     {% endif %}
     <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-default post-edit">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{% trans "Post a new topic" %}</h3>
+        <div class="col-12">
+            <div class="card post-edit">
+                <div class="card-header">
+                    <h3 class="card-title">{% trans "Post a new topic" %}</h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     {% include "forum_conversation/partials/topic_form.html" %}
                 </div>
             </div>

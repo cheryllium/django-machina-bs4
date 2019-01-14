@@ -6,12 +6,12 @@
 
 {% block content %}
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="panel panel-default topic-unlock">
-	            <div class="panel-heading">
-	                <h3 class="panel-title">{% trans "Unlock topic" %}</h3>
+		<div class="col-12">
+			<div class="card topic-unlock">
+	            <div class="card-header">
+	                <h3 class="card-title">{% trans "Unlock topic" %}</h3>
 	            </div>
-	            <div class="panel-body">
+	            <div class="card-body">
 	            	<div class="warning-message">{% trans "Are you sure you want to unlock this topic?" %}</div>
 				    <form action="" method="post">{% csrf_token %}
 				        <input type="hidden" name="post" value="yes" />

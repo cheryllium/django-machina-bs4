@@ -8,17 +8,17 @@
 {% block content %}
     {% if not query %}
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h1>{% trans "Search" %}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default post-edit">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{% trans "Search forums" %}</h3>
+            <div class="col-12">
+                <div class="card post-edit">
+                    <div class="card-header">
+                        <h3 class="card-title">{% trans "Search forums" %}</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <form method="get" action="." class="form">
                             {% include "partials/form_field.html" with field=form.q %}
                             <div class="checkbox">
@@ -39,14 +39,14 @@
         </div>
     {% else %}
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h1>{% trans "Search" %}
                 &nbsp;
-                <a href="{% url 'forum_search:search' %}" class="btn btn-xs btn-primary"><i class="fa fa-search"></i>&nbsp;{% trans "New search" %}</a></h1>
+                <a href="{% url 'forum_search:search' %}" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;{% trans "New search" %}</a></h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6 col-md-4 forum-actions-block">
+            <div class="col-6 col-md-4 forum-actions-block">
                 <p class="text-muted">
                            {% blocktrans trimmed count number_of_results=page.paginator.count %}
                                 Your search has returned <b>{{ number_of_results }}</b> result
@@ -55,7 +55,7 @@
                             {% endblocktrans %}
                 </p>
             </div>
-            <div class="col-xs-12 col-md-8 pagination-block">
+            <div class="col-12 col-md-8 pagination-block">
                 {% if page.has_previous or page.has_next %}
                     {% with pagination_size="pagination-sm" %}
                         {% include "forum_search/pagination.html" %}
@@ -64,15 +64,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default resultslist">
-                    <div class="panel-heading">
-                            <h3 class="panel-title">
+            <div class="col-12">
+                <div class="card resultslist">
+                    <div class="card-header">
+                            <h3 class="card-title">
                                 <i class="fa fa-search"></i>&nbsp;{% trans "Results" %}
                             </h3>
                         </table>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <table class="table">
                             {% for result in page.object_list %}
                                 <tr>
